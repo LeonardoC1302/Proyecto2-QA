@@ -7,12 +7,14 @@ from selenium.webdriver.support.ui import Select
 import os
 
 class TestPlan(unittest.TestCase):
+    
     def setUp(self):
         # Inicializar el WebDriver de Chrome
         self.driver = webdriver.Chrome()
         self.driver.get("https://fonmala.nyc.dom.my.id/")
 
     def test_06__create_plan(self):
+        start = time.time()
         check_button = self.driver.find_element(By.XPATH, "//a[contains(text(), '✅ I understand, I trust this site.')]")
         check_button.click()
         # Navegacion a inicion de sesion
@@ -50,9 +52,11 @@ class TestPlan(unittest.TestCase):
         submit_button.click()
         
         self.assertIn("https://fonmala.nyc.dom.my.id/plans", self.driver.current_url)
-
+        end = time.time()
+        print("Tiempo de ejecucion - create_plan: ", end - start)
 
     def test_06__create_activity(self):
+        start = time.time()
         check_button = self.driver.find_element(By.XPATH, "//a[contains(text(), '✅ I understand, I trust this site.')]")
         check_button.click()
         # Navegacion a inicion de sesion
@@ -116,6 +120,9 @@ class TestPlan(unittest.TestCase):
         register_button.click()
 
         self.assertIn("https://fonmala.nyc.dom.my.id/plan", self.driver.current_url)
+
+        end = time.time()
+        print("Tiempo de ejecucion - create_activity: ", end - start)
 
 
     def tearDown(self):

@@ -13,6 +13,7 @@ class TestEquipo(unittest.TestCase):
         self.driver.get("https://fonmala.nyc.dom.my.id/")
 
     def test_02_create_team(self):
+        start = time.time()
         check_button = self.driver.find_element(By.XPATH, "//a[contains(text(), '✅ I understand, I trust this site.')]")
         check_button.click()
         login_button = self.driver.find_element(By.LINK_TEXT, "Iniciar Sesión")
@@ -65,7 +66,9 @@ class TestEquipo(unittest.TestCase):
 
         self.assertEqual("https://fonmala.nyc.dom.my.id/ver/equipo/trabajo?id=Equipo%20Gu%C3%ADa%20Primer%20Ingreso%202020", self.driver.current_url)
 
-        
+        end = time.time()
+        print("Tiempo de ejecucion - create_team: ", end - start)
+
     def tearDown(self):
         # Cierra el navegador después de cada prueba
         self.driver.quit()

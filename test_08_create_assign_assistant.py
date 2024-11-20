@@ -14,6 +14,7 @@ class TestAsistente(unittest.TestCase):
 
     def test_01_register_assistant(self):
         # Mismo flujo de inicio de sesión
+        start = time.time()
         check_button = self.driver.find_element(By.XPATH, "//a[contains(text(), '✅ I understand, I trust this site.')]")
         check_button.click()
         login_button = self.driver.find_element(By.LINK_TEXT, "Iniciar Sesión")
@@ -37,7 +38,7 @@ class TestAsistente(unittest.TestCase):
         assistants_button.click()
         # Verificación URL
         self.assertEqual("https://fonmala.nyc.dom.my.id/guias/register-asistente", self.driver.current_url)
-        time.sleep(3)
+        #time.sleep(3)
         
         #Crear nuevo asistente
         #Completar formulario de asistente
@@ -56,8 +57,11 @@ class TestAsistente(unittest.TestCase):
 
         # Verificación de la creación del asistente
         self.assertEqual("https://fonmala.nyc.dom.my.id/guias", self.driver.current_url)
+        end = time.time()
+        print("Tiempo de ejecucion - register_assistant: ", end - start)
 
     def test_02_asignar_asistente(self):
+        start = time.time()
         check_button = self.driver.find_element(By.XPATH, "//a[contains(text(), '✅ I understand, I trust this site.')]")
         check_button.click()
         login_button = self.driver.find_element(By.LINK_TEXT, "Iniciar Sesión")
@@ -93,12 +97,14 @@ class TestAsistente(unittest.TestCase):
         asistente = self.driver.find_element(By.XPATH, "//option[text() = 'Pedro Picapiedra']")
         asistente.click()
 
-        time.sleep(3)
+        #time.sleep(3)
 
         asignar_button = self.driver.find_element(By.CLASS_NAME, "submit-button")
         asignar_button.click()
 
         self.assertEqual("https://fonmala.nyc.dom.my.id/guias", self.driver.current_url)
+        end = time.time()
+        print("Tiempo de ejecucion - asignar_asistente: ", end - start)
 
 
     def tearDown(self):
